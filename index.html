@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Briefing Komplexa · Estratégia Hoteleira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0E1E35;
+      --navy-9: #081525;
+      --white: #FFFFFF;
+      --blue: #1670C3;
+      --g1: #1670C3;
+      --g2: #1099E9;
+      --g3: #24D5FF;
+      --grad: linear-gradient(90deg, #1670C3 0%, #1099E9 48%, #24D5FF 100%);
+      --txt: #4A5770;
+      --gray: #8896A8;
+      --bdr: #DDE3ED;
+      --bg: #F3F6FA;
+      --page-bg: #EEF1F6;
+      --tb09: rgba(22,112,195,0.09);
+      --tb18: rgba(22,112,195,0.18);
+      --fd: 'Inter', system-ui, sans-serif;
+      --fa: 'Fraunces', Georgia, serif;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--fd);
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--navy);
+      background: var(--page-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--fd);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin: 0 0 0.4em;
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -1.5px;
+    }
+    h1 em, h2 em {
+      font-style: normal;
+      font-family: var(--fa);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -1px; }
+    h3 { font-size: 1.05rem; letter-spacing: -0.4px; font-weight: 700; }
+    p { margin: 0 0 1em; color: var(--txt); line-height: 1.7; }
+    button { font-family: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; padding: 0; }
+
+    .eye {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    /* HEADER */
+    .top {
+      background: var(--navy);
+      color: var(--white);
+      padding: 24px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .top::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad);
+    }
+    .top .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.3px;
+    }
+    .top .brand svg { height: 24px; width: auto; }
+    .top .meta {
+      font-size: 0.7rem;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      font-weight: 600;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 56px 6% 120px;
+    }
+
+    /* INTRO */
+    .intro {
+      background: var(--white);
+      border: 1px solid var(--bdr);
+      border-radius: 14px;
+      padding: 40px 44px;
+      margin-bottom: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .intro::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad);
+    }
+    .intro h1 {
+      max-width: 22ch;
+      margin-bottom: 16px;
+    }
+    .intro p {
+      font-size: 0.95rem;
+      max-width: 680px;
+    }
+    .intro .timing {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 6px 14px;
+      background: var(--tb09);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .intro .timing::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--grad);
+    }
+
+    /* PART (top-level section) */
+    .part {
+      background: var(--white);
+      border: 1px solid var(--bdr);
+      border-radius: 14px;
+      padding: 40px 44px 48px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .part-head {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 18px;
+      align-items: flex-start;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--bdr);
+      margin-bottom: 32px;
+    }
+    .part-num {
+      font-family: var(--fd);
+      font-weight: 800;
+      font-size: 3.4rem;
+      line-height: 0.85;
+      letter-spacing: -2.5px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .part-head h2 { margin: 4px 0 6px; }
+    .part-head p {
+      margin: 0;
+      font-size: 0.92rem;
+      max-width: 620px;
+    }
+
+    /* GROUPS within part */
+    .group {
+      margin-bottom: 36px;
+    }
+    .group:last-child { margin-bottom: 0; }
+    .group-head {
+      margin-bottom: 18px;
+    }
+    .group-head h3 {
+      margin: 0 0 4px;
+      font-size: 1.02rem;
+    }
+    .group-head .hint {
+      font-size: 0.84rem;
+      color: var(--gray);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* FIELDS */
+    .field {
+      margin-bottom: 18px;
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .field-row { grid-template-columns: 1fr; }
+    }
+    .field-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 640px) {
+      .field-row-3 { grid-template-columns: 1fr; }
+    }
+    label {
+      display: block;
+      font-family: var(--fd);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: -0.1px;
+    }
+    .helper {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--gray);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      font-family: var(--fd);
+      font-size: 0.92rem;
+      color: var(--navy);
+      background: var(--white);
+      border: 1.5px solid var(--bdr);
+      border-radius: 8px;
+      padding: 10px 14px;
+      outline: 0;
+      transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+      font-weight: 500;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--tb09);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+      font-family: var(--fd);
+      line-height: 1.55;
+    }
+    textarea.tall { min-height: 130px; }
+    textarea.lines { min-height: 110px; }
+    input::placeholder, textarea::placeholder {
+      color: var(--gray);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* PUV ANCHOR — special box */
+    .puv-anchor {
+      background: var(--bg);
+      border: 1.5px dashed var(--blue);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 6px;
+    }
+    .puv-anchor textarea {
+      background: var(--white);
+      border: 1.5px solid var(--bdr);
+      font-family: var(--fa);
+      font-style: italic;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--navy);
+      letter-spacing: -0.2px;
+      line-height: 1.5;
+    }
+    .puv-anchor .hint {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--blue);
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    /* ATO panels */
+    .ato {
+      background: var(--bg);
+      border: 1px solid var(--bdr);
+      border-radius: 12px;
+      padding: 28px 28px 32px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .ato-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .ato-num {
+      font-family: var(--fd);
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -1px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ato-name {
+      font-family: var(--fd);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+    }
+    .ato-verb {
+      font-size: 0.78rem;
+      color: var(--txt);
+      font-weight: 500;
+    }
+    .ato-flag {
+      font-family: var(--fd);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--grad);
+      padding: 3px 9px;
+      border-radius: 100px;
+    }
+    .ato-state {
+      font-size: 0.78rem;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    /* RESTRICTIONS — red-tinted treatment */
+    .restriction {
+      background: rgba(220, 38, 38, 0.04);
+      border: 1px solid rgba(220, 38, 38, 0.18);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 14px;
+    }
+    .restriction h3 {
+      color: var(--navy);
+      font-size: 0.95rem;
+      margin: 0 0 4px;
+    }
+    .restriction .hint {
+      color: var(--txt);
+      font-size: 0.8rem;
+      margin: 0 0 12px;
+      line-height: 1.55;
+    }
+    .restriction textarea {
+      background: var(--white);
+      border-color: rgba(220, 38, 38, 0.25);
+    }
+    .restriction textarea:focus {
+      border-color: #DC2626;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.10);
+    }
+
+    /* FOOTER ACTIONS */
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--bdr);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 100px;
+      font-family: var(--fd);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s var(--ease);
+    }
+    .btn-primary {
+      background: var(--grad);
+      color: var(--white);
+      box-shadow: 0 4px 18px rgba(36,213,255,0.32);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(36,213,255,0.45);
+    }
+    .btn-ghost {
+      background: var(--white);
+      border: 1.5px solid var(--bdr);
+      color: var(--navy);
+    }
+    .btn-ghost:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+    .actions-meta {
+      width: 100%;
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--gray);
+      margin-top: 16px;
+    }
+
+    /* PRINT-only mirror of textareas — shows full content */
+    .print-textarea {
+      display: none;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      font-family: var(--fd);
+      font-size: 0.92rem;
+      color: var(--navy);
+      line-height: 1.55;
+      padding: 10px 14px;
+      background: var(--white);
+      border: 1.5px solid var(--bdr);
+      border-radius: 8px;
+      font-weight: 500;
+      min-height: 50px;
+      margin: 0;
+    }
+    .puv-anchor .print-textarea {
+      font-family: var(--fa);
+      font-style: italic;
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: -0.2px;
+      line-height: 1.5;
+    }
+    .restriction .print-textarea {
+      border-color: rgba(220, 38, 38, 0.25);
+    }
+    .print-input {
+      display: none;
+      font-family: var(--fd);
+      font-size: 0.92rem;
+      color: var(--navy);
+      line-height: 1.55;
+      padding: 10px 14px;
+      background: var(--white);
+      border: 1.5px solid var(--bdr);
+      border-radius: 8px;
+      font-weight: 500;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      min-height: 42px;
+    }
+
+    /* PRINT */
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body { background: var(--white); }
+      .top { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .actions { display: none !important; }
+      main { padding: 0; max-width: none; }
+      .intro, .part { page-break-inside: auto; box-shadow: none; border-color: #ccc; }
+      .ato, .restriction, .group, .field { page-break-inside: avoid; }
+      input, textarea { border-color: #999 !important; }
+      textarea { display: none !important; }
+      input[type="text"], input[type="email"], input[type="url"], input[type="number"] {
+        display: none !important;
+      }
+      .print-textarea, .print-input { display: block !important; }
+      .print-textarea { page-break-inside: auto; }
+      h1, h2, h3 { page-break-after: avoid; }
+      .group-head, .ato-head, .part-head { page-break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="top">
+    <div class="brand">
+      <svg viewBox="0 0 100 97" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M45.8247 36.6514C47.5271 36.6514 49.1676 37.1817 50.5604 38.211L89.22 66.5651C90.9533 67.844 92.0985 69.7156 92.439 71.8679C92.7795 74.0202 92.2533 76.1413 90.9843 77.8881C89.4366 80.0092 87.0842 81.2257 84.4533 81.2257C81.8223 81.2257 81.1104 80.6954 79.7176 79.6661L41.0581 51.3119C39.3247 50.033 38.1795 48.1615 37.839 46.0092C37.4985 43.8569 38.0247 41.7358 39.2938 39.989C40.8414 37.8679 43.1938 36.6514 45.8247 36.6514ZM45.8247 29.1651C41.0581 29.1651 36.3223 31.3798 33.289 35.5908C28.2747 42.5468 29.7914 52.3101 36.6938 57.3633L75.3533 85.7174C78.1081 87.745 81.2962 88.7119 84.4533 88.7119C89.22 88.7119 93.9557 86.4973 96.989 82.2862C102.003 75.3303 100.487 65.567 93.5842 60.5138L54.9247 32.1596C52.17 30.1321 48.9819 29.1651 45.8247 29.1651Z" fill="url(#kg)"/>
+        <path d="M69.1938 7.48624C70.8961 7.48624 72.5366 8.01651 73.9295 9.04587L79.47 13.1009C83.0604 15.7211 83.8652 20.8055 81.2342 24.4239L76.4985 30.9743L64.4581 22.1468C60.8676 19.5266 60.0628 14.4422 62.6938 10.8239C64.2414 8.70275 66.5938 7.48624 69.2247 7.48624M69.1938 0C64.4271 0 59.6914 2.21468 56.658 6.42569C51.6438 13.3816 53.1604 23.145 60.0628 28.1982L78.108 41.4239L87.2081 28.822C92.2223 21.8661 90.7057 12.1027 83.8033 7.04954L78.2628 2.99449C75.508 0.966969 72.32 0 69.1628 0H69.1938Z" fill="url(#kg)"/>
+        <path d="M15.4914 14.4422C17.1938 14.4422 18.8342 14.9725 20.2271 16.0018C21.9604 17.2807 23.1057 19.1523 23.4462 21.3046C23.7866 23.4569 23.2604 25.578 21.9914 27.3248C20.4438 29.4459 18.0914 30.6624 15.4604 30.6624C12.8295 30.6624 12.1176 30.1321 10.7247 29.1028C8.9914 27.8239 7.84615 25.9523 7.50568 23.8C7.1652 21.6477 7.69139 19.5266 8.96044 17.7798C10.5081 15.6587 12.8604 14.4422 15.4914 14.4422ZM15.4914 6.95597C10.7247 6.95597 5.98901 9.17064 2.95567 13.3817C-2.05861 20.3376 -0.541946 30.1009 6.36043 35.1541C9.1152 37.1817 12.3033 38.1486 15.4604 38.1486C20.2271 38.1486 24.9628 35.9339 27.9962 31.7229C33.0104 24.767 31.4938 15.0037 24.5914 9.95046C21.8366 7.92294 18.6485 6.95597 15.4914 6.95597Z" fill="url(#kg)"/>
+        <path d="M23.3533 65.3174L35.3937 74.145C38.9842 76.7652 39.789 81.8495 37.158 85.4679C35.6104 87.589 33.258 88.8055 30.6271 88.8055C27.9961 88.8055 27.2842 88.2752 25.8914 87.2459L20.3509 83.1908C16.7604 80.5706 15.9557 75.4863 18.5866 71.8679L23.3223 65.3174M21.7128 54.8367L12.6128 67.4385C7.59851 74.3945 9.11518 84.1578 16.0176 89.211L21.558 93.2661C24.3128 95.2936 27.5009 96.2606 30.658 96.2606C35.4247 96.2606 40.1604 94.0459 43.1937 89.8349C48.208 82.8789 46.6914 73.1156 39.789 68.0624L21.7438 54.8367H21.7128Z" fill="url(#kg)"/>
+        <defs>
+          <linearGradient id="kg" x1="133" y1="-6.5" x2="-24.5" y2="87.5" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#1670C3"/>
+            <stop offset="0.480769" stop-color="#1099E9"/>
+            <stop offset="1" stop-color="#24D5FF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span>Komplexa Hotéis</span>
+    </div>
+    <span class="meta">Briefing Estratégico · v.1</span>
+  </div>
+
+  <main>
+
+    <!-- INTRO -->
+    <section class="intro">
+      <span class="eye">BRIEFING KOMPLEXA</span>
+      <h1>Tudo que precisamos saber para sair com a <em>estratégia</em> definida.</h1>
+      <p>Este formulário traduz o método Komplexa em perguntas. As respostas viram a base de toda decisão — da palavra do botão ao tempo da animação. Se a resposta não vier, a peça não nasce.</p>
+      <p>Três camadas: <strong>PUV</strong> (o nó central da rede), <strong>Especificações dos 8 atos</strong> (o que ativa cada estado mental do hóspede) e <strong>Restrições claras</strong> (o que não pode entrar). Preencha com substância. Vazio é melhor que falsidade.</p>
+      <span class="timing">Tempo estimado: 60–90 minutos</span>
+    </section>
+
+    <form id="briefing">
+
+      <!-- ════════════════════════════════════════════════
+           PART 01 · PUV
+           ════════════════════════════════════════════════ -->
+      <section class="part">
+        <header class="part-head">
+          <span class="part-num">01</span>
+          <div>
+            <span class="eye">Camada I</span>
+            <h2>PUV — Proposta <em>Única</em> de Valor</h2>
+            <p>O nó central da rede da marca. Toda peça parte daqui. Se a frase-âncora não estiver fechada, nenhuma decisão visual ou de copy é tomada.</p>
+          </div>
+        </header>
+
+        <div class="group">
+          <div class="group-head">
+            <h3>1.1 Identificação</h3>
+            <p class="hint">Os dados básicos da operação.</p>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="hotel_nome">Nome do hotel</label>
+              <input id="hotel_nome" name="hotel_nome" type="text" placeholder="Ex.: Castelfalfi" />
+            </div>
+            <div class="field">
+              <label for="hotel_local">Localização</label>
+              <input id="hotel_local" name="hotel_local" type="text" placeholder="Cidade, região, país" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="hotel_site">Site atual</label>
+              <input id="hotel_site" name="hotel_site" type="url" placeholder="https://..." />
+            </div>
+            <div class="field">
+              <label for="hotel_ig">Instagram</label>
+              <input id="hotel_ig" name="hotel_ig" type="text" placeholder="@..." />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="hotel_unidades">Quantidade de unidades</label>
+              <input id="hotel_unidades" name="hotel_unidades" type="number" placeholder="ex.: 24 quartos + 8 villas" />
+            </div>
+            <div class="field">
+              <label for="hotel_direta">% de reserva direta hoje</label>
+              <input id="hotel_direta" name="hotel_direta" type="text" placeholder="ex.: 18%" />
+              <span class="helper">Aproximado. Entendemos a dependência atual de OTA.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-head">
+            <h3>1.2 Conceito-âncora — A frase</h3>
+            <p class="hint">Em <strong>8–12 palavras</strong>, o que torna esse hotel diferente. Se essa frase fosse apagada, sobraria projeto? Se a resposta for sim, ela não é a PUV.</p>
+          </div>
+          <div class="puv-anchor">
+            <label for="puv_frase">A PUV (frase-âncora)</label>
+            <textarea id="puv_frase" name="puv_frase" rows="2" placeholder="Ex.: Uma história que une legado, hospitalidade contemporânea e experiências exclusivas, vivida em cenário medieval..."></textarea>
+            <p class="hint">É o nó central da rede semântica. Toda peça vai ressoar dela — naming, anúncio, foto, copy, e-mail.</p>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-head">
+            <h3>1.3 A história</h3>
+            <p class="hint">Contexto narrativo. Não a brochura institucional — a verdade que sustenta a marca.</p>
+          </div>
+          <div class="field">
+            <label for="hist_origem">De onde veio? Quem fundou e por quê?</label>
+            <textarea id="hist_origem" name="hist_origem" class="lines" placeholder="2–3 frases sobre a origem real do hotel..."></textarea>
+          </div>
+          <div class="field">
+            <label for="hist_principio">Que princípio fundador <strong>nunca</strong> pode ser apagado?</label>
+            <textarea id="hist_principio" name="hist_principio" placeholder="Ex.: 'a casa permanece de família', 'a maturação dos vinhos é estação por estação', 'cada hóspede recebe carta do anfitrião'..."></textarea>
+            <span class="helper">Se um redator novo apagasse isso por engano, o que seria perdido?</span>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-head">
+            <h3>1.4 Hóspede ideal</h3>
+            <p class="hint">Não use persona genérica. Descreva alguém que existe.</p>
+          </div>
+          <div class="field">
+            <label for="hospede_quem">Quem é o hóspede que sai daqui falando o nome do hotel?</label>
+            <textarea id="hospede_quem" name="hospede_quem" class="lines" placeholder="Em 2–3 frases: idade, profissão, momento de vida, o que ele busca quando sai do trabalho..."></textarea>
+          </div>
+          <div class="field">
+            <label for="hospede_nao">Quem o hóspede <strong>NÃO</strong> é?</label>
+            <textarea id="hospede_nao" name="hospede_nao" placeholder="Ex.: 'turista de pacote', 'bachelor party', 'consumidor de luxo ostensivo'..."></textarea>
+            <span class="helper">Anti-target afina o foco. Quem você NÃO quer atender.</span>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-head">
+            <h3>1.5 Posicionamento</h3>
+            <p class="hint">Três adjetivos que a marca <strong>É</strong>, três que ela <strong>NÃO É</strong>. Sem rodeios.</p>
+          </div>
+          <div class="field-row-3">
+            <div class="field"><label>É (1)</label><input type="text" name="adj_e_1" placeholder="ex.: contemplativo" /></div>
+            <div class="field"><label>É (2)</label><input type="text" name="adj_e_2" placeholder="ex.: atemporal" /></div>
+            <div class="field"><label>É (3)</label><input type="text" name="adj_e_3" placeholder="ex.: rigoroso" /></div>
+          </div>
+          <div class="field-row-3">
+            <div class="field"><label>NÃO é (1)</label><input type="text" name="adj_n_1" placeholder="ex.: festivo" /></div>
+            <div class="field"><label>NÃO é (2)</label><input type="text" name="adj_n_2" placeholder="ex.: hype" /></div>
+            <div class="field"><label>NÃO é (3)</label><input type="text" name="adj_n_3" placeholder="ex.: instagramável" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════
+           PART 02 · 8 ATOS
+           ════════════════════════════════════════════════ -->
+      <section class="part">
+        <header class="part-head">
+          <span class="part-num">02</span>
+          <div>
+            <span class="eye">Camada II</span>
+            <h2>Especificações dos <em>8 atos</em></h2>
+            <p>Material concreto que ativa cada estado mental do hóspede. Quanto mais sensorial e específico, melhor — abstrações são ruído.</p>
+          </div>
+        </header>
+
+        <!-- ATO 01 -->
+        <div class="ato">
+          <div class="ato-head">
+            <span class="ato-num">01</span>
+            <span class="ato-name">Sensação</span>
+            <span class="ato-verb">— Seduzir</span>
+          </div>
+          <div class="ato-state">Estado mental: pré-cognitivo, sensorial</div>
+          <div class="field">
+            <label for="ato1_aroma">Aromas característicos</label>
+            <textarea id="ato1_aroma" name="ato1_aroma" placeholder="Uma linha por item. Ex.: aroma de trufa, cheiro de mato após chuva, fumaça de lareira..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato1_som">Sons / paisagem sonora</label>
+            <textarea id="ato1_som" name="ato1_som" placeholder="Ex.: música medieval italiana, sino da torre às 18h, silêncio do vinhedo..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato1_tato">Texturas e sensações táteis</label>
+            <textarea id="ato1_tato" name="ato1_tato" placeholder="Ex.: pedra antiga sob os pés, lençol de linho, vento entre ciprestes..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato1_sabor">Sabores marcantes</label>
+            <textarea id="ato1_sabor" name="ato1_sabor" placeholder="Ex.: gelato artesanal, vinho da casa, azeite recém-prensado..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato1_atmosfera">Atmosfera geral</label>
+            <textarea id="ato1_atmosfera" name="ato1_atmosfera" placeholder="Em 1–2 frases: que clima envolve o hóspede assim que ele entra?"></textarea>
+          </div>
+        </div>
+
+        <!-- ATO 02 -->
+        <div class="ato">
+          <div class="ato-head">
+            <span class="ato-num">02</span>
+            <span class="ato-name">Compreensão</span>
+            <span class="ato-verb">— Ancorar</span>
+          </div>
+          <div class="ato-state">Estado mental: cognitivo, situacional</div>
+          <div class="field">
+            <label for="ato2_local">Localização e geografia</label>
+            <textarea id="ato2_local" name="ato2_local" placeholder="Ex.: Toscana profunda, 60 km de Florença, no coração do Chianti..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato2_historia">Origem / história resumida</label>
+            <textarea id="ato2_historia" name="ato2_historia" placeholder="Ex.: borgo medieval do século IX, 2.700 hectares, restaurado por uma família em 2007..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato2_tipologia">Tipologia arquitetônica</label>
+            <textarea id="ato2_tipologia" name="ato2_tipologia" placeholder="Ex.: vila medieval com torre, suítes em pedra, vinhedo e olival ao redor..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato2_frase">Frase para o hóspede repetir ao parceiro</label>
+            <textarea id="ato2_frase" name="ato2_frase" placeholder="Ex.: 'Um borgo medieval do século IX restaurado, no coração da Toscana'"></textarea>
+            <span class="helper">8–12 palavras. Pequena, repetível, evocativa.</span>
+          </div>
+        </div>
+
+        <!-- ATO 03 -->
+        <div class="ato">
+          <div class="ato-head">
+            <span class="ato-num">03</span>
+            <span class="ato-name">Desejo</span>
+            <span class="ato-verb">— Convidar</span>
+          </div>
+          <div class="ato-state">Estado mental: afetivo, projetivo</div>
+          <div class="field">
+            <label for="ato3_exp">Experiências oferecidas (com nome próprio)</label>
+            <textarea id="ato3_exp" name="ato3_exp" class="tall" placeholder="Uma linha por experiência. Ex.:&#10;Tour de vinhos com degustação no barril&#10;Caça às trufas com cães treinados&#10;Cavalgada no olival ao alvorecer&#10;..."></textarea>
+            <span class="helper">Não é amenidade. É momento com nome próprio que planta desejo. Quanto mais sensorial, melhor.</span>
+          </div>
+        </div>
+
+        <!-- ATO 04 -->
+        <div class="ato">
+          <div class="ato-head">
+            <span class="ato-num">04</span>
+            <span class="ato-name">Imaginação</span>
+            <span class="ato-verb">— Projetar</span>
+          </div>
+          <div class="ato-state">Estado mental: identitário, possessivo</div>
+          <div class="field">
+            <label for="ato4_tipologias">Tipologias de quartos / villas</label>
+            <textarea id="ato4_tipologias" name="ato4_tipologias" class="tall" placeholder="Uma tipologia por bloco com nome próprio + 2-3 elementos distintivos. Ex.:&#10;&#10;Suíte na Torre — cama com vista para o vale, banheira em pedra, vigas em madeira clara&#10;&#10;Villa Olivetto — terraço privativo entre oliveiras, lareira, piscina infinita..."></textarea>
+            <span class="helper">Nada de "Standard / Superior / Master" — boutique não tem categoria hierárquica.</span>
+          </div>
+        </div>
+
+        <!-- ATO 05 -->
+        <div class="ato">
+          <div class="ato-head">
+            <span class="ato-num">05</span>
+            <span class="ato-name">Habitação</span>
+            <span class="ato-verb">— Habitar</span>
+          </div>
+          <div class="ato-state">Estado mental: imaginativo, contemplativo</div>
+          <div class="field">
+            <label for="ato5_espacos">Espaços onde o hóspede para entre os momentos</label>
+            <textarea id="ato5_espacos" name="ato5_espacos" class="tall" placeholder="Uma linha por espaço com 1 frase de atmosfera. Ex.:&#10;Piazzetta ao entardecer — café e silêncio toscano&#10;Biblioteca da torre — leitura sob luz de tarde&#10;Jardim do moinho — vinho ao pôr-do-sol&#10;..."></textarea>
+            <span class="helper">"Tempo morto elegante" — entre uma atividade e outra. É onde boutique se diferencia de hotel.</span>
+          </div>
+        </div>
+
+        <!-- ATO 06 -->
+        <div class="ato">
+          <div class="ato-head">
+            <span class="ato-num">06</span>
+            <span class="ato-name">Confirmação</span>
+            <span class="ato-verb">— Validar</span>
+            <span class="ato-flag">opcional</span>
+          </div>
+          <div class="ato-state">Estado mental: social, validativo</div>
+          <div class="field">
+            <label for="ato6_imprensa">Imprensa relevante</label>
+            <textarea id="ato6_imprensa" name="ato6_imprensa" placeholder="Ex.: Condé Nast Traveler 2024, NYT Travel, Casa Vogue, Wallpaper..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato6_premios">Prêmios e selos honrosos</label>
+            <textarea id="ato6_premios" name="ato6_premios" placeholder="Ex.: Forbes Travel Guide 5★, Leading Hotels of the World, Estrela Michelin..."></textarea>
+          </div>
+          <div class="field">
+            <label for="ato6_depo">Depoimentos reais com autorização</label>
+            <textarea id="ato6_depo" name="ato6_depo" class="tall" placeholder="Mínimo 2-4. Inclua nome, procedência, citação. Sem autorização documentada, omitir.&#10;&#10;Ex.: 'Voltamos três vezes em dois anos.' — Maria L., São Paulo"></textarea>
+            <span class="helper"><strong>Sem prova autêntica, este ato se omite.</strong> Vazio é melhor que falsidade.</span>
+          </div>
+        </div>
+
+        <!-- ATO 07 -->
+        <div class="ato">
+          <div class="ato-head">
+            <span class="ato-num">07</span>
+            <span class="ato-name">Expansão</span>
+            <span class="ato-verb">— Amplificar</span>
+            <span class="ato-flag">condicional</span>
+          </div>
+          <div class="ato-state">Estado mental: identitário secundário</div>
+          <div class="field">
+            <label for="ato7_publico">Existe segundo público com decisão de compra distinta?</label>
+            <textarea id="ato7_publico" name="ato7_publico" placeholder="Ex.: casamentos toscanos, retiros corporativos, aniversários íntimos. Inclua tipo + % aproximada do faturamento."></textarea>
+            <span class="helper">Critério: <strong>≥ 15% do faturamento</strong> e curadoria distinta. Caso contrário, omitir — polui a navegação principal.</span>
+          </div>
+          <div class="field">
+            <label for="ato7_diff">Como difere a jornada desse segundo público?</label>
+            <textarea id="ato7_diff" name="ato7_diff" placeholder="Ex.: noiva pesquisa em Pinterest, decide com mãe, agenda visita presencial..."></textarea>
+          </div>
+        </div>
+
+        <!-- ATO 08 -->
+        <div class="ato">
+          <div class="ato-head">
+            <span class="ato-num">08</span>
+            <span class="ato-name">Decisão</span>
+            <span class="ato-verb">— Encontrar</span>
+          </div>
+          <div class="ato-state">Estado mental: decisório, agencial</div>
+          <div class="field-row">
+            <div class="field">
+              <label for="ato8_motor">Motor de reservas</label>
+              <input id="ato8_motor" name="ato8_motor" type="text" placeholder="Qual provedor + URL do motor" />
+            </div>
+            <div class="field">
+              <label for="ato8_wpp">WhatsApp direto</label>
+              <input id="ato8_wpp" name="ato8_wpp" type="text" placeholder="Número + horário de atendimento" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="ato8_email">E-mail de contato direto</label>
+              <input id="ato8_email" name="ato8_email" type="email" placeholder="reservas@... (não info@)" />
+            </div>
+            <div class="field">
+              <label for="ato8_assina">Quem assina a carta / comunicação final</label>
+              <input id="ato8_assina" name="ato8_assina" type="text" placeholder="Ex.: 'Lorenzo, Diretor da Casa' — pessoa, não cargo genérico" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="ato8_tom">Tom da última comunicação</label>
+            <textarea id="ato8_tom" name="ato8_tom" placeholder="Ex.: 'epistolar, pessoal, primeira pessoa, sem urgência'..."></textarea>
+            <span class="helper">A marca se afasta, o motor recebe. Convite — não venda.</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ════════════════════════════════════════════════
+           PART 03 · RESTRIÇÕES
+           ════════════════════════════════════════════════ -->
+      <section class="part">
+        <header class="part-head">
+          <span class="part-num">03</span>
+          <div>
+            <span class="eye">Camada III</span>
+            <h2>Restrições <em>claras</em></h2>
+            <p>O que <strong>não</strong> pode entrar. Diga sem rodeios. Cada item evita ruído depois — o "não" agora poupa três rodadas de revisão.</p>
+          </div>
+        </header>
+
+        <div class="restriction">
+          <h3>3.1 Palavras e expressões proibidas</h3>
+          <p class="hint">Termos que tornam tudo mais raso. Inclua jargão de redes sociais, palavras infladas e clichês de hotelaria.</p>
+          <textarea name="rest_palavras" class="tall" placeholder="Uma linha por item. Ex.:&#10;'transforme'&#10;'destrave'&#10;'experiência única' (vazio)&#10;'paraíso'&#10;'ninja' / 'rockstar'&#10;'reserve agora' como mensagem central&#10;..."></textarea>
+        </div>
+
+        <div class="restriction">
+          <h3>3.2 Estética que NÃO representa a marca</h3>
+          <p class="hint">Imagens, paletas, estilos visuais que não devem aparecer.</p>
+          <textarea name="rest_estetica" placeholder="Ex.:&#10;Foto de stock&#10;Pessoas posando para câmera&#10;Quartos como inventário imobiliário&#10;Paleta saturada / cores neon&#10;Carrosséis automáticos&#10;..."></textarea>
+        </div>
+
+        <div class="restriction">
+          <h3>3.3 Práticas comerciais a evitar</h3>
+          <p class="hint">Táticas que quebram o princípio de "conversão é serviço, não interrupção".</p>
+          <textarea name="rest_praticas" placeholder="Ex.:&#10;Popup de e-mail na entrada&#10;Timer de urgência ('promoção acaba em 5 minutos')&#10;CTA cintilante em cor saturada&#10;Cadastro antes de acessar o motor&#10;DM automatizada com link de reserva&#10;..."></textarea>
+        </div>
+
+        <div class="restriction">
+          <h3>3.4 Concorrentes que NÃO queremos parecer</h3>
+          <p class="hint">Nomeie marcas e modelos a evitar. Útil saber o que detesta — afina mais que o que adora.</p>
+          <textarea name="rest_concorrentes" placeholder="Ex.: hotelaria de rede genérica, marketing de Booking-genéricos, resort all-inclusive massificado..."></textarea>
+        </div>
+
+        <div class="restriction">
+          <h3>3.5 Outras restrições</h3>
+          <p class="hint">Cores, fontes, símbolos, narrativas, temáticas a evitar.</p>
+          <textarea name="rest_outras" placeholder="Ex.: nunca usar a palavra 'luxo' isolada, sem o adjetivo qualificador. Não usar imagens de pessoas em primeiro plano sem autorização..."></textarea>
+        </div>
+
+        <div class="field" style="margin-top: 28px;">
+          <label for="resp_nome">Quem preencheu este briefing</label>
+          <div class="field-row">
+            <input id="resp_nome" name="resp_nome" type="text" placeholder="Nome e cargo" />
+            <input name="resp_data" type="text" placeholder="Data de preenchimento" />
+          </div>
+        </div>
+
+      </section>
+
+      <div class="actions">
+        <button type="button" class="btn btn-primary" id="exportBtn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1 L7 9 M3.5 5.5 L7 9 L10.5 5.5 M2 12 L12 12"/></svg>
+          Baixar respostas (JSON)
+        </button>
+        <button type="button" class="btn btn-ghost" id="printBtn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5 L3 1 L11 1 L11 5 M3 10 L1 10 L1 5 L13 5 L13 10 L11 10 M3 8 L11 8 L11 13 L3 13 Z"/></svg>
+          Imprimir / PDF
+        </button>
+        <p class="actions-meta">Os dados ficam no seu navegador até serem baixados. Nada é enviado a servidores.</p>
+      </div>
+
+    </form>
+
+  </main>
+
+  <script>
+    // ─── Export JSON ──────────────────────────────
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const form = document.getElementById('briefing');
+      const data = {};
+      const formData = new FormData(form);
+      for (const [key, value] of formData.entries()) {
+        if (value && value.trim()) data[key] = value.trim();
+      }
+      const hotelName = data.hotel_nome ? data.hotel_nome.toLowerCase().replace(/[^a-z0-9]+/g, '-') : 'briefing';
+      const date = new Date().toISOString().slice(0, 10);
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `briefing-komplexa-${hotelName}-${date}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // ─── Print mirrors: cria <div> espelho ao lado de cada textarea/input
+    //      para que a impressão mostre o conteúdo completo
+    function setupPrintMirrors() {
+      document.querySelectorAll('textarea').forEach((t) => {
+        let mirror = t.nextElementSibling;
+        if (!mirror || !mirror.classList.contains('print-textarea')) {
+          mirror = document.createElement('div');
+          mirror.className = 'print-textarea';
+          mirror.setAttribute('aria-hidden', 'true');
+          t.parentNode.insertBefore(mirror, t.nextSibling);
+        }
+        const sync = () => { mirror.textContent = t.value; };
+        sync();
+        t.addEventListener('input', sync);
+      });
+      document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], input[type="number"]').forEach((inp) => {
+        let mirror = inp.nextElementSibling;
+        if (!mirror || !mirror.classList.contains('print-input')) {
+          mirror = document.createElement('div');
+          mirror.className = 'print-input';
+          mirror.setAttribute('aria-hidden', 'true');
+          inp.parentNode.insertBefore(mirror, inp.nextSibling);
+        }
+        const sync = () => { mirror.textContent = inp.value || ' '; };
+        sync();
+        inp.addEventListener('input', sync);
+      });
+    }
+    setupPrintMirrors();
+
+    // ─── Print ────────────────────────────────────
+    document.getElementById('printBtn').addEventListener('click', () => {
+      document.querySelectorAll('textarea').forEach((t) => {
+        const m = t.nextElementSibling;
+        if (m && m.classList.contains('print-textarea')) m.textContent = t.value;
+      });
+      document.querySelectorAll('input[type="text"], input[type="email"], input[type="url"], input[type="number"]').forEach((inp) => {
+        const m = inp.nextElementSibling;
+        if (m && m.classList.contains('print-input')) m.textContent = inp.value || ' ';
+      });
+      window.print();
+    });
+
+    // ─── Auto-save em localStorage (rascunho) ─────
+    const form = document.getElementById('briefing');
+    const STORAGE_KEY = 'komplexa-briefing-draft';
+
+    // Restore on load
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      Object.entries(saved).forEach(([name, value]) => {
+        const el = form.elements[name];
+        if (el) el.value = value;
+      });
+    } catch (e) {}
+
+    // Save on every input
+    form.addEventListener('input', () => {
+      const data = {};
+      const formData = new FormData(form);
+      for (const [k, v] of formData.entries()) data[k] = v;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    });
+  </script>
+
+</body>
+</html>
